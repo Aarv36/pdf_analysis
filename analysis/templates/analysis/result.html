@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding-top: 20px;
+        }
+        .highlighted-images {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .highlighted-images img {
+            margin: 10px;
+            max-width: 100%;
+            height: auto;
+        }
+        .btn-upload {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="text-center mb-4">
+            <h1>Analysis Result</h1>
+        </header>
+        <div class="alert alert-info text-center">
+            {{ message }}
+        </div>
+        {% if highlighted_images %}
+            <h2 class="text-center">Highlighted Pages with QR Codes</h2>
+            <div class="highlighted-images">
+                {% for image_url in highlighted_images %}
+                    <img src="{{ image_url }}" alt="Highlighted Page">
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="text-center">
+            <a href="{% url 'upload_file' %}" class="btn btn-primary btn-upload">Upload Another File</a>
+        </div>
+        <footer class="text-center mt-4">
+            <p>&copy; 2024 PDF QR Code Analyzer</p>
+        </footer>
+    </div>
+</body>
+</html>
